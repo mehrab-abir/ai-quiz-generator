@@ -35,6 +35,10 @@ with st.sidebar:
     difficulty = st.selectbox("Choose difficulty level of the quiz:",
                               ("Easy","Medium","Hard"),
                               index=None)
+    
+    numQuiz = st.selectbox("Number of questions for the quiz: ",
+                            (5,10),
+                            index=None)
 
     btn = st.button("Generate Quiz",type="primary")
     
@@ -43,17 +47,22 @@ if btn:
         st.error("You must upload at least 1 image")
     if difficulty is None:
         st.error("Select a difficulty level")
+    if not numQuiz:
+        st.error("Select number of questions for the quiz")
         
-    if images and difficulty:
+    if images and difficulty and numQuiz:
         if(len(images)>3):
             st.error("Maximum 3 images allowed")
         else:
+            # summarize note
             with st.container(border=True):
                 st.subheader("Summarized Note:")
 
                 with st.spinner("Summarizing note..."):
                     summarized_note = note_generator(pil_images)
                     st.write_stream(stream_text(summarized_note))
+                    
+            # audio transcription
             with st.container(border=True):
                 st.subheader("Audio Transcription:")
                 with st.spinner("Generating audio: "):
@@ -66,10 +75,11 @@ if btn:
                     audioTranscribe = audio_transcription(summarized_note)
                     st.audio(audioTranscribe)
             
+            # quiz generate
             with st.container(border=True):
                 st.subheader(f"Quiz (Difficulty: {difficulty})")
                 with st.spinner("Generating quiz..."):
-                    generated_quiz = quiz_generator(pil_images,difficulty)
+                    generated_quiz = quiz_generator(pil_images,difficulty,numQuiz)
                     st.write_stream(stream_text(generated_quiz))
             
     

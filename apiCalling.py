@@ -18,8 +18,8 @@ def note_generator(images):
     
     return response.text
 
-def quiz_generator(images, difficultyLevel):
-    prompt = f"make 5 quiz questions in english language from the content of these images maintaining difficulty level {difficultyLevel}, among three options Easy, Medium, Hard. Also, provide answers of those questions at the end.";
+def quiz_generator(images, difficultyLevel,numQuiz):
+    prompt = f"make {numQuiz} quiz questions in english language from the content of these images maintaining difficulty level {difficultyLevel}, among three options Easy, Medium, Hard. Also, provide answers of those questions at the end.";
     
     response = client.models.generate_content(
         model = "gemini-3-flash-preview",

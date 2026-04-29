@@ -1,10 +1,10 @@
 import streamlit as st
-from apiCalling import note_generator, quiz_generator, audio_transcription
+from apiCalling import note_generator, quiz_generator
 from PIL import Image
 import time
 
 st.header("Note Summary and Quiz Generator")
-st.subheader("Upload images and have AI make quizzes for you")
+st.subheader("Upload images and let AI generate quiz questions for you")
 st.divider()
 
 def stream_text(text):
@@ -61,19 +61,6 @@ if btn:
                 with st.spinner("Summarizing note..."):
                     summarized_note = note_generator(pil_images)
                     st.write_stream(stream_text(summarized_note))
-                    
-            # audio transcription
-            with st.container(border=True):
-                st.subheader("Audio Transcription:")
-                with st.spinner("Generating audio: "):
-                    
-                    #clearning markdown symbols
-                    summarized_note = summarized_note.replace("#",'')
-                    summarized_note = summarized_note.replace("*",'')
-                    summarized_note = summarized_note.replace("$",'')
-                    
-                    audioTranscribe = audio_transcription(summarized_note)
-                    st.audio(audioTranscribe)
             
             # quiz generate
             with st.container(border=True):

@@ -1,8 +1,4 @@
-# ai-quiz-generator
-Generate quiz and summarize note by uploading pictures of content
-
-
-# AI Study Assistant
+# AI Quiz Generator
 
 An AI-powered Streamlit application that generates quiz questions from uploaded study material images using the Gemini API.
 

@@ -3,8 +3,9 @@ from apiCalling import note_generator, quiz_generator
 from PIL import Image
 import time
 
-st.header("Note Summary and Quiz Generator")
-st.subheader("Upload images and let AI generate quiz questions for you")
+st.header("Smart Quiz Generator")
+st.subheader("Upload study notes as images and generate quiz questions in seconds.")
+st.write("Powered By Gemini API")
 st.divider()
 
 def stream_text(text):
@@ -55,12 +56,12 @@ if btn:
             st.error("Maximum 3 images allowed")
         else:
             # summarize note
-            with st.container(border=True):
-                st.subheader("Summarized Note:")
+            # with st.container(border=True):
+                # st.subheader("Summarized Note:")
 
-                with st.spinner("Summarizing note..."):
-                    summarized_note = note_generator(pil_images)
-                    st.write_stream(stream_text(summarized_note))
+                # with st.spinner("Summarizing note..."):
+                    # summarized_note = note_generator(pil_images)
+                    # st.write_stream(stream_text(summarized_note))
             
             # quiz generate
             with st.container(border=True):
